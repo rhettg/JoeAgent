@@ -1,5 +1,7 @@
 import logging
 log = logging.getLogger("agent.timer")
+
+
 import time
 STOPPED = 0
 RUNNING = 1
@@ -43,14 +45,20 @@ class Timer:
         self.stop_time = time.time()
 
 class TimerCollection:
+    """A timer collection is held by and agent. Each agent has just one.
+
+    The TimerCollection provides storage for timers and methods for checking
+    if a timer as expired or when the next timeout is."""
     def __init__(self):
         self.timers = []
 
     def add(self, timer):
+        """Add a timer to the collection"""
         timer.start()
         self.timers.append(timer)
 
     def nextTimeoutValue(self):
+        """Return how many seconds (float) before the next timer will expire"""
         min = None
         for t in self.timers:
             if min is None or t.getTimeLeft() < min:
@@ -58,11 +66,15 @@ class TimerCollection:
         return min
 
     def remove(self, timer):
+        """Remove the timer from the collection"""
         assert isinstance(timer, Timer), "Not a timer: %s" % str(timer)
         # checkTimers will clear out stopped timers
         timer.stop()
 
     def checkTimers(self):
+        """Check timers to see if anyone has expired.
+        Also takes care of cleaning up previously timers we should keep around
+        any longer (expired or stopped) """
         popped = []
         for t in self.timers:
             if t.isPopped():
