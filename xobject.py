@@ -27,6 +27,7 @@ class SocketExpatParser(ExpatParser):
             buffer = source.recv(self._bufsize)
         self.close()
 
+# We will need a mapping from python types to tags for generating XML
 TYPE_TAG_MAP = {
     types.StringType: 'str',
     types.NoneType: 'none',
@@ -38,10 +39,6 @@ TYPE_TAG_MAP = {
     types.TupleType: 'tuple'
 }
 
-def escape(s, replace=string.replace):
-    s = replace(s, "&", "&amp;")
-    s = replace(s, "<", "&lt;")
-    return replace(s, ">", "&gt;",)
 
 def create_xml_list(value):
     """Convert a list of python values into an xml representation
@@ -77,9 +74,8 @@ def convert_value(value):
     elif type(value) == types.DictType:
         value = create_xml_dict(value)
     elif type(value) == types.StringType:
-        value = escape(value)
+        value = saxutils.escape(value)
     
-    # TODO: escape special characters
     return "<%s>%s</%s>" % (tag, str(value), tag)
     
 class XMLObject:
@@ -111,7 +107,250 @@ def create_object(full_class_name = None):
     else:
         return XMLObject()
 
+
+class StackElement(object):
+    def __init__(self):
+        pass
+    def getTag(self):
+        """Return the tag that this element is represented as"""
+        raise 'Not Implemented'
+    def addElement(self, elem):
+        """Add a element to this parent element"""
+        assert isinstance(elem, StackElement)
+        pass
+    def getValue(self):
+        """Return the python object representation"""
+        return None
+
+class TypedElement(StackElement):
+    ELEMENT_TYPE = None
+    def __init__(self):
+        StackElement.__init__(self)
+        self.value = None
+    def addElement(self, elem):
+        raise 'TypedElements do not support sub elements'
+    def addContent(self, content):
+        self.value = content
+    def getTag(self):
+        return TYPE_TAG_MAP[self.__class__.ELEMENT_TYPE]
+    def getValue(self):
+        return self.value
+
+class StringElement(TypedElement):
+    ELEMENT_TYPE = types.StringType
+    def getValue(self):
+        return saxutils.unescape(str(self.value))
+
+class IntegerElement(TypedElement):
+    ELEMENT_TYPE = types.IntType
+    def getValue(self):
+        return int(self.value)
+
+class FloatElement(TypedElement):
+    ELEMENT_TYPE = types.FloatType
+    def getValue(self):
+        return float(self.value)
+
+class BooleanElement(TypedElement):
+    ELEMENT_TYPE = types.BooleanType
+    def getValue(self):
+        self.value = string.strip(self.value)
+        if self.value == "True":
+            return True
+        elif self.value == "False":
+            return False
+        else:
+            assert 0, "Invalid for boolean: %s" % str(self.value)
+
+class NoneElement(TypedElement):
+    ELEMENT_TYPE = types.NoneType
+    def getValue(self):
+        return None
+
+class MemberElement(StackElement):
+    def __init__(self, name):
+        StackElement.__init__(self)
+        self.name = name
+        self.value = None
+    def addElement(self, elem):
+        self.value = elem
+    def getName(self):
+        return self.name
+    def getValue(self):
+        return self.value.getValue()
+
+class ObjectElement(StackElement):
+    def __init__(self, classObj):
+        StackElement.__init__(self)
+        self.classObj = classObj
+        self.dict = {}
+
+    def getTag(self):
+        return "XMLObject"
+
+    def addElement(self, elem):
+        assert isinstance(elem, MemberElement)
+        self.dict[elem.getName()] = elem.getValue()
+    def getValue(self):
+        obj = self.classObj()
+        obj.__dict__.update(self.dict)
+        return obj
+
+class ListElement(StackElement):
+    def __init__(self):
+        StackElement.__init__(self)
+        self.list = []
+    def getTag(self):
+        return 'list'
+    def addElement(self, elem):
+        self.list.append(elem)
+    def getValue(self):
+        val_list = []
+        for elem in self.list:
+            val_list.append(elem.getValue())
+        return val_list
+
+class TupleElement(ListElement):
+    def getTag(self):
+        return "tuple"
+    def getValue(self):
+        return tuple(ListElement.getValue(self))
+
+class PairKeyElement(StackElement):
+    def __init__(self):
+        StackElement.__init__(self)
+        self.value = None
+    def getTag(self):
+        return "key"
+    def addElement(self, elem):
+        self.value = elem.getValue()
+    def getValue(self):
+        return self.value
+
+class PairValueElement(StackElement):
+    def __init__(self):
+        StackElement.__init__(self)
+        self.value = None
+    def getTag(self):
+        return "value"
+    def addElement(self, elem):
+        self.value = elem.getValue()
+    def getValue(self):
+        return self.value
+
+class PairElement(StackElement):
+    def __init__(self):
+        StackElement.__init__(self)
+        self.key = None
+        self.value = None
+    def getTag(self):
+        return "pair"
+    def addElement(self, elem):
+        if isinstance(elem, PairKeyElement):
+            self.key = elem.getValue()
+        elif isinstance(elem, PairValueElement):
+            self.value = elem.getValue()
+        else:
+            assert 0, "Invalid type of element"
+    def getKey(self):
+        return self.key
+    def getValue(self):
+        return self.value
+
+class DictionaryElement(StackElement):
+    def __init__(self):
+        StackElement.__init__(self)
+        self.dict = {}
+    def getTag(self):
+        return "dict"
+    def addElement(self, elem):
+        assert isinstance(elem, PairElement)
+        self.dict[elem.getKey()] = elem.getValue()
+    def getValue(self):
+        return self.dict
+
+# We need a mapping from tags to StackElements for parsing
+ELEMENT_LIST = {
+    'str': StringElement,
+    'none': NoneElement,
+    'int': IntegerElement,
+    'float': FloatElement,
+    'boolean': BooleanElement,
+    'list': ListElement,
+    'dict': DictionaryElement,
+    'tuple': TupleElement,
+    'pair': PairElement,
+    'value': PairValueElement,
+    'key': PairKeyElement
+}
+
 class ObjectHandler(handler.ContentHandler):
+    def __init__(self):
+        handler.ContentHandler.__init__(self)
+
+        self.content = []
+
+        # As we encounter elements, we will push them on the stack. As the
+        # elements complete, we will pop them off and add them to the element
+        # above them in the stack, or to the list of instances if they have
+        # no parent
+        self.stack = []
+        self.instances = []
+
+    def reset(self):
+        self.content = []
+        self.stack = []
+        self.instances = []
+
+    def getInstances(self):
+        return self.instances
+    def characters(self, ch):
+        print "adding content: '%s'" % ch
+        self.content.append(ch)
+
+    def startElement(self, name, attrs):
+        print "Starting %s" % name
+        self.content = []
+        parentElement = None
+        if len(self.stack) > 0:
+            parentElement = self.stack[-1]
+        
+        if isinstance(parentElement, ObjectElement):
+            # This is a special case for when we are parsing objects.
+            # The elements we encounter will be the names of our member
+            # variables, not a tag we can match to determine the type.
+            # Any element we encouter will be a MemberElement
+            elem = MemberElement(name)
+            self.stack.append(elem)
+        else:
+            # Any tag we encouter should match the tag specified in our 
+            # element classes
+            elem = ELEMENT_LIST[name]()
+            self.stack.append(elem)
+
+    def endElement(self, name):
+        print "Ending %s" % name
+        assert len(self.stack) > 0
+        elem = self.stack.pop()
+        assert isinstance(elem, StackElement), \
+               "Not a StackElement?: %s : " % (`elem`)
+        assert elem.getTag() == name
+
+
+        if isinstance(elem, TypedElement):
+            # If the element supports character data, lets put it in
+            # and reset our character array
+            elem.addContent(string.join(self.content, ''))
+
+        # Our element (top of stack) is done processing.
+        # We have two options, either we pass the element on up to its
+        # parent element, or we add it to our own list of instances
+        if len(self.stack) > 0:
+            self.stack[-1].addElement(elem)
+        else:
+            self.instances.append(elem.getValue())
+
+class OldObjectHandler(handler.ContentHandler):
     def __init__(self):
         handler.ContentHandler.__init__(self)
 
@@ -166,8 +405,8 @@ class ObjectHandler(handler.ContentHandler):
             raise Exception("Error token :%s" % (name))
 
     def characters(self, ch):
-        if self.in_property:
-            self.contents += ch
+        assert len(self.stack) > 0
+        self.stack[-1].addContent(ch)
 
 def print_instance(instance, indent = ""):
     print "%sInstance of: %s" % (indent, str(instance.__class__))

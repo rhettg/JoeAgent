@@ -3,6 +3,7 @@
 import unittest
 from test import test_support
 from xobject import *
+import StringIO
 
 
 class XMLObjectTestClass(XMLObject):
@@ -26,6 +27,12 @@ class ConvertValuesTestCase(unittest.TestCase):
         return "Test the convert to XML code"
 
     def setUp(self):
+        self.parser = make_parser()
+        self.parser.setFeature(feature_namespaces, 0)
+
+        self.obj_hndler = ObjectHandler()
+        self.parser.setContentHandler(self.obj_hndler)
+
         self.basic_values = [123,
                         '123',
                         'My Name Is',
@@ -48,8 +55,17 @@ class ConvertValuesTestCase(unittest.TestCase):
     def test_feature_one(self):
         # Test feature one.
         for val in self.basic_values:
-            print convert_value(val)
-        return True
+            txt = convert_value(val)
+            io = StringIO.StringIO(txt)
+            self.parser.parse(io)
+            instances = self.obj_hndler.getInstances()
+            assert len(instances) == 1, "No output?: %s   %s" % (`val`, txt)
+            inst = instances[0]
+            assert inst == val, \
+                   "In: %s (%s)   Out: %s (%s)" \
+                   % (str(val), `val`, str(inst), `inst`)
+            self.obj_hndler.reset()
+            self.parser.reset()
 
     def test_feature_two(self):
         obj = XMLObjectTestClass()
