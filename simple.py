@@ -31,12 +31,19 @@ class HandleConnectJob(job.Job):
         job.Job.notify(self, evt)
         if isinstance(evt, agent.MessageReceivedEvent) and \
            isinstance(evt.getMessage(), ConnectRequest):
-               evt.getSource().setAgentInfo(evt.getMessage().getInfo())
+            # We are only goign to accept the connection if we don't already
+            # have a connection to it.
+            info = evt.getMessage().getInfo()
+            conn = self.getAgent().getConnectionByInfo(info)
+            if conn is None:
+                evt.getSource().setAgentInfo(info)
                
-               out_msg = agent.OkResponse(evt.getMessage().getKey())
-               assert out_msg.getRequestKey() != None, "Key is None"
-               e = agent.MessageSendEvent(self, out_msg, evt.getSource())
-               self.getAgent().addEvent(e)
+                out_msg = agent.OkResponse(evt.getMessage().getKey())
+            else:
+                out_msg = agent.DeniedResponse(evt.getMessage().getKey())
+
+            e = agent.MessageSendEvent(self, out_msg, evt.getSource())
+            self.getAgent().addEvent(e)
 
 class HandlePingJob(job.Job):
     """Respond to a Ping Request"""
@@ -139,7 +146,7 @@ class ConnectJob(job.Job):
             # This job is complete
             self.getAgent().dropListener(self)
             if isinstance(self._send_msg, agent.MessageSendEvent):
-                self.getAgent().addEvent(agent.MessageSendEvent)
+                self.getAgent().addEvent(self._send_msg)
 
     def getConnection(self):
         return self._connection
