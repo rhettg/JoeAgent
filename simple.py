@@ -250,24 +250,25 @@ class SimpleAgent(agent.Agent):
         resp.setState(self.getState())
         return resp
     
-    def handleMessageSendEvent(self, event):
-        agent.Agent.handleMessageSendEvent(self, event)
+    def handleMessageSendEvent(self, evt):
+        agent.Agent.handleMessageSendEvent(self, evt)
 
         # We are extending handleMessageSendEvent to handle the case where
         # the target is defined by a AgentInfo object. If this is the case,
         # we will need to find a proper connection object (or create one)
-        if isinstance(event.getTarget(), agent.AgentInfo):
-            conn = self.getConnectionByInfo(event.getTarget())
+        if isinstance(evt.getTarget(), agent.AgentInfo):
+            conn = self.getConnectionByInfo(evt.getTarget())
             if conn is None:
                 log.debug(
                   "Connection to %s does not yet exist, creating ConnectJob" 
-                   % event.getTarget().getName())
+                   % evt.getTarget().getName())
 
-                jb = ConnectJob(self, event.getTarget(), 1, event)
+                jb = ConnectJob(self, evt.getTarget(), 1, evt)
                 self.addListener(jb)
                 self.addEvent(job.RunJobEvent(self, jb))
             else:
-                conn.write(str(event.getMessage()))
+                log.debug("Writing message %s" % (str(evt.getMessage())))
+                conn.write(str(evt.getMessage()))
 
     def getHandlers(self):
         handlers = agent.Agent.getHandlers(self)
