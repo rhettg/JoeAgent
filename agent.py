@@ -49,11 +49,13 @@ class AgentInfo(XMLObject):
         self.host = None
         self.port = None
         self.name = ""
+        self.class_name = ""
 
         if config is not None:
             self.setHost(config.getBindAddress())
             self.setPort(config.getPort())
             self.setName(config.getName())
+            self.setClassName(str(config.getAgentClass()))
 
         XMLObject.__init__(self)
 
@@ -71,10 +73,16 @@ class AgentInfo(XMLObject):
         return self.name
     def setName(self, name):
         self.name = name
+
+    def getClassName(self):
+        return self.class_name
+    def setClassName(self, name):
+        self.class_name = name
     
     def __eq__(self, info):
         return info != None and self.__class__ == info.__class__ and \
                self.getName() == info.getName() and \
+               self.getClassName() == info.getClassName() and \
                self.getHost() == info.getHost() and \
                self.getPort() == info.getPort()
 
@@ -496,6 +504,8 @@ class Agent(EventSource, EventListener):
         if isinstance(event.getMessage(), Response):
             log.debug("Response: %s" % str(event.getMessage()))
 
+        if isinstance(event.getTarget(), AgentInfo):
+            job = ConnectJob()
         event.getTarget().write(str(event.getMessage()))
 
 

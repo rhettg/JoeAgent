@@ -98,12 +98,14 @@ class ConnectJob(job.Job):
     number of times. Eventually, if a OkResponse is received, we will
     create a ConnectCompleteEvent to notify anyone who cares that the
     connection was successful"""
-    def __init__(self, agent_obj, agent_info, max_retries = -1):
+    def __init__(self, agent_obj, agent_info, max_retries = -1, 
+                 send_msg = None):
         job.Job.__init__(self, agent_obj)
         self.key = None
         self._max_retries = max_retries
         self._retries = 0
         self._connection = None
+        self._send_msg = send_msg
 
         # The agent we are going to connect to
         self.info = agent_info
@@ -136,6 +138,9 @@ class ConnectJob(job.Job):
         elif isinstance(evt, ConnectCompleteEvent) and evt.getSource() == self:
             # This job is complete
             self.getAgent().dropListener(self)
+            if isinstance(self._send_msg, agent.MessageSendEvent):
+                self.getAgent().addEvent(agent.MessageSendEvent)
+            self.getAgent().addEvent
 
     def getConnection(self):
         return self._connection

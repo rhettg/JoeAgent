@@ -52,6 +52,10 @@ def setup_logger(logname, filename):
 
 if __name__ == "__main__":
     log = setup_logger("", "log/status.log")
+    if len(sys.argv) < 3:
+        print "Usage: %s <addr> <port>" % sys.argv[0]
+        sys.exit(1)
+
     bind_addr = sys.argv[1]
     port = sys.argv[2]
 
