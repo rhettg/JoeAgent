@@ -82,6 +82,7 @@ class AgentConfig(XMLObject):
         self.bind_addr = None
         self.port = None
         self.name = "Unnamed"
+        self.logging_path = ""
 
     def getBindAddress(self):
         return self.bind_addr
@@ -97,6 +98,14 @@ class AgentConfig(XMLObject):
         return self.name
     def setName(self, name):
         self.name = name
+
+    def getLoggingPath(self):
+        return self.logging_path
+    def setLoggingPath(self, path):
+        self.logging_path = path
+
+    def getAgentClass(self):
+        return Agent
 
 # Special Messages for generic agents
 class ShutdownRequest(Request): 
@@ -334,8 +343,6 @@ class AgentConnection(Connection):
         This assumes the caller is only inspecting this socket when there
         is data ready. We do not want to check for data here because we do not
         want to block."""
-        log.debug("AgentConnection %s polled for ReadPending: %s" 
-                  % (self.getName(), str(self.isConnected())))
         return self.isConnected()
 
     def isWritePending(self):

@@ -205,7 +205,7 @@ class HTTPConnection(agent.Connection):
     This is based on BaseHTTPRequestHandler class of the python standard
     library. It was not possible to use that library directly because it 
     blocks.  """
-    def __init__(self, config = None, sock = None):
+    def __init__(self, sock = None):
         agent.Connection.__init__(self, sock)
         self.raw_request = ""
 

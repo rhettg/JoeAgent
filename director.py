@@ -9,6 +9,9 @@ PING_TIMEOUT = 1.0
 
 class PingJob(job.Job):
     """Job to handling pinging all the connected nodes a specified interval"""
+    def __init__(self):
+        job.Job.__init__(self)
+        self.outgoing = {}
     def notify(self, evt):
         job.Job.notify(self, evt)
         if isinstance(evt, PingEvent):
@@ -41,7 +44,7 @@ class PingJob(job.Job):
                 ptimer = self.outgoing[key]
                 ptimer.stop()
                 del self.outgoing[key]
-                if evt.getSource().IsSelfConnected():
+                if evt.getSource().isSelfConnected():
                     evt.getSource().disconnect()
             else:
                 log.debug("Ping Response key did not match")
@@ -105,11 +108,13 @@ class ShutdownJob(job.Job):
                 self.agnt_conns[source] == evt.getMessage().getRequestKey():
                 # this message is for us
                 if isinstance(evt.getMessage(), agent.OkResponse):
-                    log.info("Agent %s stopping" % source.getConfig().getName())
+                    log.info("Agent %s stopping" 
+                             % source.getAgentInfo().getName())
 
                 else:
                     log.warning("Agent %s responded to shutdown with: %s" 
-                                % (evt.getSource().getConfig().getName(), str(evt.getMessage())))
+                                % (evt.getSource().getAgentInfo().getName(), 
+                                   str(evt.getMessage())))
 
                 # We delete the entry in the hash so that we know our shutdown
                 # job for this agent is complete
@@ -151,6 +156,10 @@ class DirectorStatusResponse(simple.StatusResponse):
 
     def getAgentInfoList(self):
         return self.agents
+
+class DirectorConfig(simple.SimpleAgentConfig):
+    def getAgentClass(self):
+        return Director
 
 class Director(simple.SimpleAgent):
     """The director is a simple agent which sole purpose is to provide a small

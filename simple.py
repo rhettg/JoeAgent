@@ -199,6 +199,10 @@ class HandleStatusJob(job.Job):
                 self.getAgent().addEvent(msg)
 
 
+class SimpleAgentConfig(agent.AgentConfig):
+    def getAgentClass(self):
+        return SimpleAgent
+
 class SimpleAgent(agent.Agent):
     def __init__(self, config):
         agent.Agent.__init__(self, config)
@@ -255,6 +259,9 @@ class SubAgentConfig(agent.AgentConfig):
         return self.director_info
     def setDirectorInfo(self, info):
         self.director_info = info
+
+    def getAgentClass(self):
+        return SubAgent
 
 class SubAgent(SimpleAgent):
     def __init__(self, config):
