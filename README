@@ -1,0 +1,23 @@
+JoeAgent - A Multi-Agent Distributed Application Framework
+March 2004
+
+This framework was developed as a senior project by Rhett
+Garber at California Polytechnique University, San Luis
+Obispo. As of the time of this writing, there really isn't a
+true application using this framework. 
+
+For an example application using this framework, check out
+JoeTraffic. You should be able to get it from wherever you
+found this framework.  JoeTraffic is a web-log analysis
+application. It is far from complete or useful.
+
+This framework is being released under the GNU Lesser Public
+License. As I understand I have full rights to be able to do
+that, even though this was developed as a senior project for
+Cal Poly.
+
+For further information, please checkout the documentation
+or contact me:
+    Rhett Garber
+    rhettg@nullhole.com
+    Project Webpage: http://www.nullhole.com/JoeAgent/
