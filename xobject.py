@@ -3,6 +3,7 @@ from xml.sax import saxutils, handler, make_parser, xmlreader
 from xml.sax.handler import feature_namespaces
 from xml.sax.expatreader import ExpatParser
 from utils import get_class
+import string, types
 
 class EndOfObjectException(Exception):
     def __init__(self, object):
@@ -26,23 +27,64 @@ class SocketExpatParser(ExpatParser):
             buffer = source.recv(self._bufsize)
         self.close()
 
+TYPE_TAG_MAP = {
+    types.StringType: 'str',
+    types.NoneType: 'none',
+    types.IntType: 'int',
+    types.FloatType: 'float',
+    types.BooleanType: 'boolean',
+    types.ListType: 'list',
+    types.DictType: 'dict',
+    types.TupleType: 'tuple'
+}
+
+def escape(s, replace=string.replace):
+    s = replace(s, "&", "&amp;")
+    s = replace(s, "<", "&lt;")
+    return replace(s, ">", "&gt;",)
+
+def create_xml_list(value):
+    """Convert a list of python values into an xml representation
+    of a list."""
+
+    # Convert every element in the list (note this could be recursive)
+    values = map(convert_value, value)
+    # Join all the values together so each one takes a line
+    return string.join(values, '\n')
+
+def create_xml_dict(value):
+    """Convert a dictionary to its xml representation
+    return """
+    values = []
+    for k in value.keys():
+        values.append("<pair><%s>%s</%s> <%s>%s</%s></pair>" % 
+                          ("key", convert_value(k), "key",
+                           "value", convert_value(value[k]), "value"))
+    return string.join(values, '\n')
+
+def convert_value(value):
+
+    if isinstance(value, XMLObject):
+        return str(value)
+
+    tag = TYPE_TAG_MAP[type(value)]
+
+    if type(value) == types.NoneType:
+        return "<%s/>" % (tag)
+    elif type(value) == types.ListType or \
+         type(value) == types.TupleType:
+        value = create_xml_list(value)
+    elif type(value) == types.DictType:
+        value = create_xml_dict(value)
+    elif type(value) == types.StringType:
+        value = escape(value)
+    
+    # TODO: escape special characters
+    return "<%s>%s</%s>" % (tag, str(value), tag)
+    
 class XMLObject:
     def __init__(self):
-        self._objects = []
-
-    def addObject(self, object):
-        self._objects.append(object)
-
-    def getObjects(self, object_class = None):
-        """Return a list of objects of the given class. If no class is 
-           specified, return all objects"""
-        obj_list = []
-        for obj in self._objects:
-            if object_class == None or isinstance(obj, object_class):
-                obj_list.append(obj)
-        return obj_list
-    def removeObject(self, object):
-        self._objects.remove(object)
+        pass
 
     def __str__(self):
         """Convert Object to XML"""
@@ -50,10 +92,8 @@ class XMLObject:
         for property in self.__dict__.keys():
             if property[0] != "_":
                 output += "  <%s>%s</%s>\n" % (property, 
-                                               self.__dict__[property], 
+                                        convert_value(self.__dict__[property]), 
                                                property)
-        for obj in self.getObjects():
-            output += str(obj)
 
         output = "<XMLObject class=\"%s\">\n%s</XMLObject>\n" % \
                                               (str(self.__class__), output)
