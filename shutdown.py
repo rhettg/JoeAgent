@@ -1,16 +1,17 @@
 #!/usr/bin/python
 import socket, sys, logging
-import simple, agent
+import simple, agent, message
 from event import Event
 from job import Job, RunJobEvent
 
 log = logging.getLogger("agent.shutdown")
 
 class ShutdownJob(Job):
-    def __init__(self, agent_obj):
+    def __init__(self, agent_obj, c_job):
         Job.__init__(self, agent_obj)
         self.conn = None
         self.key = None
+        self.connect_job = c_job
 
     def run(self):
         log.debug("Running Shutdown job") 
@@ -24,16 +25,25 @@ class ShutdownJob(Job):
     def notify(self, evt):
         Job.notify(self, evt)
         log.debug("Notified of event: %s" % str(evt.__class__))
-        if isinstance(evt, simple.ConnectCompleteEvent):
+        if isinstance(evt, simple.ConnectCompleteEvent) and \
+            evt.getSource() == self.connect_job:
             self.conn = evt.getConnection()
             self.run()
-        elif isinstance(evt, agent.MessageReceivedEvent):
-            log.debug("Its a message recevied: %s vs. %s" % (self.key, evt.getMessage().getRequestKey()))
+        elif isinstance(evt, simple.ConnectFailedEvent) and \
+              evt.getSource() == self.connect_job:
+            log.error("Failed to connect to agent")
+            print "Failed to connect to agent"
+            self.getAgent().setState(agent.STOPPING)
+
+        elif isinstance(evt, agent.MessageReceivedEvent) and \
+              isinstance(evt.getMessage(), message.Response):
+
             if isinstance(evt.getMessage(), agent.OkResponse) and \
                self.key == evt.getMessage().getRequestKey():
                 print "Shutdown Acknowledged"
                 self.getAgent().setState(agent.STOPPING)
-            if isinstance(evt.getMessage(), agent.DeniedResponse) and \
+
+            elif isinstance(evt.getMessage(), agent.DeniedResponse) and \
                self.key == evt.getMessage().getRequestKey():
                 print "Shutdown Denied"
                 self.getAgent().setState(agent.STOPPING)
@@ -75,8 +85,8 @@ if __name__ == "__main__":
     command_agent = agent.Agent(config)
 
     # Create the jobs
-    shutdown_job = ShutdownJob(command_agent)
-    connect_job = simple.ConnectJob(command_agent, remote_info)
+    connect_job = simple.ConnectJob(command_agent, remote_info, 1)
+    shutdown_job = ShutdownJob(command_agent, connect_job)
 
     # Create an event that will start the job we want at run-time
     run_evt = RunJobEvent(command_agent, connect_job)
