@@ -38,24 +38,50 @@ STOPPING    = StoppingState()
 
 BUFF_SIZE = 1024
 
-# Seconds we give a connection to deliver a config object
+# Seconds we give a new socket to request a connection
 CONFIG_TIMEOUT = 2.0
 
 log = logging.getLogger("agent")
 
+class AgentInfo(XMLObject):
+    """Basic information about an agent."""
+    def __init__(self, config = None):
+        self.host = None
+        self.port = None
+        self.name = ""
+
+        if config is not None:
+            self.setHost(config.getBindAddress())
+            self.setPort(config.getPort())
+            self.setName(config.getName())
+
+        XMLObject.__init__(self)
+
+    def getHost(self):
+        return self.host
+    def setHost(self, addr):
+        self.host = addr
+
+    def getPort(self):
+        return self.port
+    def setPort(self, port):
+        self.port = port
+
+    def getName(self):
+        return self.name
+    def setName(self, name):
+        self.name = name
+
 class AgentConfig(XMLObject):
     """This is the basic configuration class for an agent. An agent config 
        consists of a address and port to bind to, as well as a name to 
-       uniquely identify itself.
-
-       This configuration will be sent to the Director agent to register
-       this agent.
+       uniquely identify itself. Derived agents will have extra configuration
+       information as well.
     """
     def __init__(self):
         self.bind_addr = None
         self.port = None
         self.name = "Unnamed"
-        XMLObject.__init__(self)
 
     def getBindAddress(self):
         return self.bind_addr
@@ -73,9 +99,6 @@ class AgentConfig(XMLObject):
         self.name = name
 
 # Special Messages for generic agents
-class ConfigRequest(Request):
-    """Tell an incoming agent that you require a config object"""
-    pass
 class ShutdownRequest(Request): 
     """Tell an agent to shutdown"""
     pass
@@ -86,11 +109,6 @@ class PingRequest(Request):
 class OkResponse(Response): pass
 class DeniedResponse(Response): pass
 class PingResponse(Response): pass
-class ConfigResponse(Response):
-    """Response to a ConfigRequest which contains a AgentConfig for the 
-    connection"""
-    def getConfig(self):
-        return self.getObjects(AgentConfig)
 
 class UnsupportedResponse(Response): pass
 
@@ -98,6 +116,7 @@ class UnsupportedResponse(Response): pass
 class ConnectionEvent(Event): pass
 
 class ConnectEvent(ConnectionEvent):
+    """Event generated when a connection is made"""
     def __init__(self, source, conn):
         self.conn = conn
         Event.__init__(self, source)
@@ -118,6 +137,7 @@ class ConnectionExceptionEvent(ConnectionEvent):
     pass
 
 class MessageEvent(Event):
+    """Generic event base class for any incomming or outgoing message"""
     def __init__(self, source, msg):
         self.message = msg
         Event.__init__(self, source)
@@ -152,105 +172,129 @@ class StateChangeEvent(Event):
     def getNewState(self):
         return self.new_state
 
-
-class ConnectionConfTimeoutEvent(ConnectionEvent): 
-    """This event is generated when a connection has not returned
-    a config response in time"""
-    pass
-
-class ConnectionConfigTimer(timer.Timer):
-    def __init__(self, source = None):
-        event = ConnectionConfTimeoutEvent(source)
-        timer.Timer.__init__(self, CONFIG_TIMEOUT, event)
-
 class Connection:
-    def __init__(self, config = None, sock = None):
-        self.config = config
+    def __init__(self, sock = None):
         self.sock = sock
+
+    def setSocket(self, sock):
+        self.sock = sock
+    def getSocket(self):
+        return self.sock
+    
+    def fileno(self):
+        return self.sock.fileno()
+    
+    def isConnected(self):
+        return self.sock is not None
+    
+    def disconnect(self):
+        log.debug("Disconnecting connection to %s" % self.getName())
+
+        self.sock.close()
+        self.sock = None
+
+    def connect(self):
+        raise Exception("Not supported")
+    
+    def read(self):
+        return self.sock.recv(BUFF_SIZE)
+    def write(self, msg):
+        try:
+            sent = self.sock.send(msg)
+        except socket.error, e:
+            log.exception("Exception during send")
+            self.disconnect()
+        return sent
+    def isReadPending(self):
+        log.debug("Base class Connection polled for ReadPending")
+        return False
+    def isWritePending(self):
+        return False
+
+class AgentConnection(Connection):
+    def __init__(self, conn_info = None, sock = None):
+        Connection.__init__(self, sock)
+        self.conn_info = conn_info
         self.out_buffer = ""
         self.in_buffer = ""
         self.conn_timer = None
         self.self_connect = False
         self.parser = xml.sax.expatreader.ExpatParser()
         self.parser.setFeature(xml.sax.expatreader.feature_namespaces, 0)
-        self.parser_hndlr = xobject.ObjectHandler()
+        self.parser_hndlr = xobject.SingleXMLObjectHandler()
         self.parser.setContentHandler(self.parser_hndlr)
 
         self.parser.reset()
         self.parser._cont_handler.setDocumentLocator(
                                  xml.sax.expatreader.ExpatLocator(self.parser))
     
-    def setSocket(self, sock):
-        self.sock = sock
-    def getSocket(self):
-        return self.sock
-    
-    def getConfig(self):
-        return self.config
-    def setConfig(self, config):
-        self.config = config
+    def getConnectionInfo(self):
+        return self.conn_info
+    def setConnectionInfo(self, info):
+        self.conn_info = info
     
     def getName(self):
-        if self.getConfig() is not None:
-            return self.getConfig().getName()
+        if self.getConnectionInfo() is not None:
+            return self.getConnectionInfo().getName()
         else:
             return "Unnamed"
 
-    def fileno(self):
-        return self.sock.fileno()
-    
-    def isConnected(self):
-        return self.sock != None
-    
     def isAuthorized(self, request):
-        return self.config != None
+        """Is this connection authorized for the specific request. For now
+        we just require that the connection request was made. In the future
+        we can require a shutdown to come from a proper x509 certificate or
+        something."""
+        return self.getConnectionInfo() is not None
 
-    def IsSelfConnected(self):
+    def isSelfConnected(self):
         """Is the open connection opened by us, or by the remote side"""
         return self.self_connect
 
     def disconnect(self):
-        log.debug("Disconnecting connection to %s" % self.getName())
-
+        Connection.disconnect(self)
         self.out_buffer = ""
-        self.sock.close()
-        self.sock = None
         self.self_connect = False
 
     def connect(self):
         if self.isConnected():
             raise Exception("Connection already established")
-        if self.config == None:
-            raise Exception("Configuration not set")
+
+        if self.getConnectionInfo() is None or \
+           self.getConnectionInfo().getHost() is None:
+            raise Exception("Do not know who to connect to")
+
         self.self_connect = True
-        if self.config.getBindAddress() is None or \
-           self.config.getBindAddress() == 'None':
-            log.info("Connection %s has not call back information" 
-                      % str(self))
-            return
+
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.sock.connect((self.config.getBindAddress(), int(self.config.getPort())))
+            self.sock.connect((self.getConnectionInfo().getHost(), 
+                               int(self.getConnectionInfo().getPort())))
         except socket.error, e:
             log.error("Error connecting to agent %s: %s" % \
-                      (str(self.getName()), str(e)))
+                      (str(self.getConnectionInfo().getName()), str(e)))
             self.sock = None
         
     def read(self):
+        """This method should only be called when we know there is data
+        waiting (by using select, for example). Data read is fed into the
+        XML parser. When an XMLObject is completely read, it will be wrapped
+        in a MessageReceivedEvent and handed back to the caller."""
+
         log.debug("Connection read")
         obj = None
         try:
-            self.in_buffer = self.sock.recv(BUFF_SIZE)
+            self.in_buffer = Connection.read(self)
             if self.in_buffer == "":
                 log.debug("Read 0, disconnect")
                 self.disconnect()
                 return None
             while self.in_buffer != "":
                 self.parser.feed(self.in_buffer)
-                self.in_buffer = self.sock.recv(BUFF_SIZE)
+                self.in_buffer = Connection.read(self)
         except EndOfObjectException, e:
             obj = e.getObject()
             self.parser.reset()
+            self.parser_hndlr.reset()
         except socket.error, e:
             log.exception("Exception from socket")
             self.disconnect()
@@ -268,10 +312,11 @@ class Connection:
         if not self.isConnected():
             self.connect()
             return
+
         sent = 0
-        self.out_buffer += buffer
+        self.out_buffer += str(buffer)
         try:
-            sent = self.sock.send(self.out_buffer)
+            sent = Connection.write(self, self.out_buffer)
         except socket.error, e:
             log.exception("Exception during send")
             self.disconnect()
@@ -279,26 +324,36 @@ class Connection:
         log.debug("%d chars sent" % sent)
 
     def isReadPending(self):
+        """If the socket is open, we will always say we are ready for read.
+        This assumes the caller is only inspecting this socket when there
+        is data ready. We do not want to check for data here because we do not
+        want to block."""
+        log.debug("AgentConnection %s polled for ReadPending: %s" 
+                  % (self.getName(), str(self.isConnected())))
         return self.isConnected()
 
     def isWritePending(self):
+        """We only want to write data if we are connected and have data
+        waiting in the out_buffer"""
         return self.isConnected() and len(self.out_buffer) > 0
 
 class ServerConnection(Connection):
     """Subclass of Connection which represents a socket which is listening 
     for incoming connections"""
     def __init__(self, sock = None):
-        Connection.__init__(self, None, sock)
+        Connection.__init__(self, sock)
 
     def read(self):
         log.debug("Accepting new connection")
         new_sock, new_addr = self.sock.accept()
         log.debug("%s connected" % str(new_addr))
-        return ConnectEvent(self, Connection(None, new_sock))
-    def write(self, msg):
-        raise Exception("Not supported for ServerConnections")
+        return ConnectEvent(self, AgentConnection(None, new_sock))
+
+    def isReadPending(self):
+        return True
 
 def create_server_socket(address, port):
+    """Utility for creating a server socket"""
     srv_sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     srv_sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     srv_sock.bind((address, port))
@@ -311,6 +366,7 @@ class Agent(EventSource, EventListener):
         from event import EventQueue
         self.state = STOPPED
         self.config = config
+        self._info = None
         self.connections = []
         self.event_queue = EventQueue()
         self.timers = TimerCollection()
@@ -359,6 +415,11 @@ class Agent(EventSource, EventListener):
 
     def getConfig(self):
         return self.config
+
+    def getInfo(self):
+        if self._info is None:
+            self._info = AgentInfo(self.getConfig())
+        return self._info
 
     def getState(self):
         return self.state

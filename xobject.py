@@ -94,6 +94,9 @@ class XMLObject:
     as XML data. Any object which has this base class can be converted to a
     string (which will be XML) and be put back together again using a 
     XMLObjectHandler and Expat parser."""
+    def __init__(self):
+        pass
+
     def __str__(self):
         """Convert Object to XML"""
         output = ""

@@ -21,4 +21,3 @@ class Response(Message):
         self.key = key
     def getRequestKey(self):
         return self.key
-

@@ -206,7 +206,7 @@ class HTTPConnection(agent.Connection):
     library. It was not possible to use that library directly because it 
     blocks.  """
     def __init__(self, config = None, sock = None):
-        agent.Connection.__init__(self, config, sock)
+        agent.Connection.__init__(self, sock)
         self.raw_request = ""
 
     def read(self):

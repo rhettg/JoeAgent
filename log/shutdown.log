@@ -4,198 +4,784 @@ DEBUG:agent:Event Added (2)
 DEBUG:agent:Event Added (3)
 DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x4512792c>
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x44768a0c>
+DEBUG:root:Notified of event: agent.StateChangeEvent
 DEBUG:agent.simple:Connect Job Notified
 DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4519ae4c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent.simple:Running ConnectJob
-ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
-DEBUG:agent:Connection Added (1)
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x4519f1ac>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4519f44c>
-DEBUG:agent:Sending a message of type simple.ConnectRequest
-DEBUG:agent:Request: 1159328812
-DEBUG:agent:Connection Write
-ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
-DEBUG:agent:Event Added (1)
-DEBUG:agent:Initialized non-server agent
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Event Added (3)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x44b3192c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <job.RunJobEvent instance at 0x44ba4e4c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent.simple:Running ConnectJob
-ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
-DEBUG:agent:Connection Added (1)
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x44ba91ac>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44ba944c>
-DEBUG:agent:Sending a message of type simple.ConnectRequest
-DEBUG:agent:Request: 1153078316
-DEBUG:agent:Connection Write
-ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
-DEBUG:agent:Event Added (1)
-DEBUG:agent:Initialized non-server agent
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Event Added (3)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x462c792c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4633ae4c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent.simple:Running ConnectJob
-ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
-DEBUG:agent:Connection Added (1)
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x4633f1ac>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4633f44c>
-DEBUG:agent:Sending a message of type simple.ConnectRequest
-DEBUG:agent:Request: 1177809964
-DEBUG:agent:Connection Write
-ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
-DEBUG:agent:Event Added (1)
-DEBUG:agent:Initialized non-server agent
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Event Added (3)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x475a892c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4761be4c>
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4493426c>
+DEBUG:root:Notified of event: job.RunJobEvent
 DEBUG:agent.simple:Connect Job Notified
 DEBUG:agent.simple:Running ConnectJob
 DEBUG:agent:Connection Added (1)
 DEBUG:agent:Event Added (2)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x476201ac>
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x449345ac>
+DEBUG:root:Notified of event: agent.StateChangeEvent
 DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4762046c>
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x449348ac>
 DEBUG:agent:Sending a message of type simple.ConnectRequest
-DEBUG:agent:Request: 1197605932
+DEBUG:agent:Request: 1150503052
 DEBUG:agent:Connection Write
-DEBUG:agent:212 chars sent
+DEBUG:agent:244 chars sent
+DEBUG:root:Notified of event: agent.MessageSendEvent
 DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:1 W:0, X:1 for None sec)
-DEBUG:agent:<agent.Connection instance at 0x4762028c> requests a read
+DEBUG:agent.timer:C: 1078428692.804607  I: 3.000000   N: 1078428692.807923
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 2.99651002884 sec)
+DEBUG:agent:<agent.AgentConnection instance at 0x4493468c> requests a read
 DEBUG:agent:Handling Read Event
 DEBUG:agent:Connection read
 DEBUG:agent:Read 0, disconnect
 DEBUG:agent:Disconnecting connection to Remote Agent
+DEBUG:root:Notified of event: agent.ConnectionReadEvent
 DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
 DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:agent.timer:C: 1078428692.804607  I: 3.000000   N: 1078428692.831517
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.97290682793 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x449348ec>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (2)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44934a8c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150503500
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428695.813384  I: 3.000000   N: 1078428695.816316
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99688696861 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428695.813384  I: 3.000000   N: 1078428698.811387
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00176095962524 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x44934aac>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (3)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44934c0c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150503884
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428698.823276  I: 3.000000   N: 1078428698.826500
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99659609795 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428698.823276  I: 3.000000   N: 1078428701.821370
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00172996520996 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x44934c2c>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (4)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44934d8c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150504268
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428701.833418  I: 3.000000   N: 1078428701.836960
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99627685547 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428701.833418  I: 3.000000   N: 1078428704.831712
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00152277946472 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x44934dac>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (5)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44934f0c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150504652
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428704.843565  I: 3.000000   N: 1078428704.847400
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99598407745 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428704.843565  I: 3.000000   N: 1078428707.841864
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00151801109314 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x44934f2c>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (6)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x449380ac>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150517356
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428707.853733  I: 3.000000   N: 1078428707.857986
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99556612968 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428707.853733  I: 3.000000   N: 1078428710.851838
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00171899795532 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x449380cc>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (7)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4493822c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150517740
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428710.863869  I: 3.000000   N: 1078428710.868413
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99527597427 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428710.863869  I: 3.000000   N: 1078428713.862166
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00152087211609 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x4493824c>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (8)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x449383ac>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150518124
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428713.874438  I: 3.000000   N: 1078428713.879219
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99503898621 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428713.874438  I: 3.000000   N: 1078428716.872384
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00187110900879 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x449383cc>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (9)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4493852c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150518508
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428716.884196  I: 3.000000   N: 1078428716.889268
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99474811554 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428716.884196  I: 3.000000   N: 1078428719.882549
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00146508216858 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x4493854c>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (10)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x449386ac>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150518892
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428719.894337  I: 3.000000   N: 1078428719.899738
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99441695213 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428719.894337  I: 3.000000   N: 1078428722.892686
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00146889686584 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x449386cc>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (11)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4493882c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150519276
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428722.904500  I: 3.000000   N: 1078428722.910206
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99411201477 sec)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428722.904500  I: 3.000000   N: 1078428725.902852
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.00146508216858 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x4493884c>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (12)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x449389ac>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150519660
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428725.914668  I: 3.000000   N: 1078428725.920807
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.9936811924 sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <simple.ConnectRetryEvent instance at 0x449389cc>
+DEBUG:root:Notified of event: simple.ConnectRetryEvent
+DEBUG:agent.simple:Connect Job Notified
+INFO:agent.simple:Attempting to connect to director
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (13)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44938b2c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1150520044
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Event Queue is empty
+DEBUG:agent.timer:C: 1078428728.927062  I: 3.000000   N: 1078428728.933389
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 2.99349308014 sec)
 DEBUG:agent:Event Added (1)
 DEBUG:agent:Initialized non-server agent
 DEBUG:agent:Event Added (2)
 DEBUG:agent:Event Added (3)
 DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x43cb992c>
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x416eda0c>
+DEBUG:root:Notified of event: agent.StateChangeEvent
 DEBUG:agent.simple:Connect Job Notified
 DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <job.RunJobEvent instance at 0x43d2ce4c>
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x418b928c>
+DEBUG:root:Notified of event: job.RunJobEvent
 DEBUG:agent.simple:Connect Job Notified
 DEBUG:agent.simple:Running ConnectJob
 DEBUG:agent:Connection Added (1)
 DEBUG:agent:Event Added (2)
+DEBUG:agent:Timer Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x43d311ac>
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x418b95cc>
+DEBUG:root:Notified of event: agent.StateChangeEvent
 DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x43d3146c>
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x418b98cc>
 DEBUG:agent:Sending a message of type simple.ConnectRequest
-DEBUG:agent:Request: 1137906732
+DEBUG:agent:Request: 1099667628
 DEBUG:agent:Connection Write
-DEBUG:agent:212 chars sent
+DEBUG:agent:244 chars sent
+DEBUG:root:Notified of event: agent.MessageSendEvent
 DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:1 W:0, X:1 for None sec)
-DEBUG:agent:<agent.Connection instance at 0x43d3128c> requests a read
+DEBUG:agent.timer:C: 1078428735.567850  I: 3.000000   N: 1078428735.576436
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 2.99123716354 sec)
+DEBUG:agent:<agent.AgentConnection instance at 0x418b96ac> requests a read
 DEBUG:agent:Handling Read Event
 DEBUG:agent:Connection read
-DEBUG:agent:Read 0, disconnect
-DEBUG:agent:Disconnecting connection to Remote Agent
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
 DEBUG:agent:Event Added (1)
-DEBUG:agent:Initialized non-server agent
-DEBUG:agent:Event Added (2)
-DEBUG:agent:Event Added (3)
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x46dab8cc>
+DEBUG:root:Notified of event: agent.ConnectionReadEvent
 DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
-DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <job.RunJobEvent instance at 0x46e1ee0c>
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent.simple:Running ConnectJob
-DEBUG:agent:Connection Added (1)
-DEBUG:agent:Event Added (2)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x46e2316c>
+DEBUG:agent:Handling event <agent.MessageReceivedEvent instance at 0x418b97ec>
+DEBUG:agent:Received a message of type agent.OkResponse
+DEBUG:agent:Response: <XMLObject class="agent.OkResponse">
+  <key><str>1099667628</str></key>
+</XMLObject>
+
+DEBUG:root:Notified of event: agent.MessageReceivedEvent
+DEBUG:root:Its a message recevied: None vs. 1099667628
 DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
 DEBUG:agent:Going to handle an event
-DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x46e2342c>
-DEBUG:agent:Sending a message of type simple.ConnectRequest
-DEBUG:agent:Request: 1189229548
+DEBUG:agent:Handling event <simple.ConnectCompleteEvent instance at 0x418b98ac>
+DEBUG:root:Notified of event: simple.ConnectCompleteEvent
+DEBUG:root:Running Shutdown job
+DEBUG:agent:Event Added (1)
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x418b968c>
+DEBUG:agent:Sending a message of type agent.ShutdownRequest
+DEBUG:agent:Request: 1099667724
 DEBUG:agent:Connection Write
-DEBUG:agent:212 chars sent
-DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:90 chars sent
+DEBUG:root:Notified of event: agent.MessageSendEvent
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
 DEBUG:agent:Event Queue is empty
 DEBUG:agent:Going into select (R:1 W:0, X:1 for None sec)
-DEBUG:agent:<agent.Connection instance at 0x46e2324c> requests a read
+DEBUG:agent:<agent.AgentConnection instance at 0x418b96ac> requests a read
+DEBUG:agent:Handling Read Event
+DEBUG:agent:Connection read
+DEBUG:agent:Event Added (1)
+DEBUG:root:Notified of event: agent.ConnectionReadEvent
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: True
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:<agent.AgentConnection instance at 0x418b96ac> requests a read
 DEBUG:agent:Handling Read Event
 DEBUG:agent:Connection read
 DEBUG:agent:Read 0, disconnect
 DEBUG:agent:Disconnecting connection to Remote Agent
-DEBUG:agent.simple:Connect Job Notified
-DEBUG:agent:Event Queue is empty
-DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:root:Notified of event: agent.ConnectionReadEvent
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageReceivedEvent instance at 0x418b97cc>
+DEBUG:agent:Received a message of type agent.OkResponse
+DEBUG:agent:Response: <XMLObject class="agent.OkResponse">
+  <key><str>1099667724</str></key>
+</XMLObject>
+
+DEBUG:root:Notified of event: agent.MessageReceivedEvent
+DEBUG:root:Its a message recevied: 1099667724 vs. 1099667724
+DEBUG:agent:Event Added (1)
+DEBUG:agent:AgentConnection Remote Agent polled for ReadPending: False
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x418b98cc>
+DEBUG:root:Notified of event: agent.StateChangeEvent
+DEBUG:agent:Cleaning up event queue
+DEBUG:agent:Event queue empty, all events processed. Ok to shutdown

@@ -23,10 +23,12 @@ class ShutdownJob(Job):
 
     def notify(self, evt):
         Job.notify(self, evt)
+        log.debug("Notified of event: %s" % str(evt.__class__))
         if isinstance(evt, simple.ConnectCompleteEvent):
             self.conn = evt.getConnection()
             self.run()
         elif isinstance(evt, agent.MessageReceivedEvent):
+            log.debug("Its a message recevied: %s vs. %s" % (self.key, evt.getMessage().getRequestKey()))
             if isinstance(evt.getMessage(), agent.OkResponse) and \
                self.key == evt.getMessage().getRequestKey():
                 print "Shutdown Acknowledged"
@@ -51,6 +53,9 @@ def setup_logger(logname, filename):
 
 if __name__ == "__main__":
     log = setup_logger("", "log/shutdown.log")
+    if len(sys.argv) < 3:
+        print "Usage: %s <addr> <port>" % (sys.argv[0])
+        sys.exit(1)
     bind_addr = sys.argv[1]
     port = sys.argv[2]
 
@@ -61,17 +66,17 @@ if __name__ == "__main__":
     config.setName("Shutdown Command")
 
     # Configuration for the remote agent
-    remote_config = agent.AgentConfig()
-    remote_config.setBindAddress(bind_addr)
-    remote_config.setPort(int(port))
-    remote_config.setName("Remote Agent")
+    remote_info = agent.AgentInfo()
+    remote_info.setHost(bind_addr)
+    remote_info.setPort(int(port))
+    remote_info.setName("Remote Agent")
 
     # Create the agent
     command_agent = agent.Agent(config)
 
     # Create the jobs
     shutdown_job = ShutdownJob(command_agent)
-    connect_job = simple.ConnectJob(command_agent, remote_config)
+    connect_job = simple.ConnectJob(command_agent, remote_info)
 
     # Create an event that will start the job we want at run-time
     run_evt = RunJobEvent(command_agent, connect_job)

@@ -16,8 +16,8 @@ class PingJob(job.Job):
             log.debug("Pinging all connections")
             agnt = self.getAgent()
             for c in agnt.getConnections():
-                if c.getConfig() is not None and \
-                   not isinstance(c, agent.ServerConnection):
+                if c.getInfo() is not None and \
+                   isinstance(c, agent.AgentConnection):
                     evnt = agent.MessageSendEvent(self, agent.PingRequest(), c)
                     agnt.addEvent(evnt)
                     ptimer = PingTimeoutTimer(c)
