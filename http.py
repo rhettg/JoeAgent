@@ -212,7 +212,7 @@ class HTTPConnection(agent.Connection):
     def read(self):
         log.debug("Connection read")
         try:
-            self.in_buffer = self.sock.recv(agent.BUFF_SIZE)
+            self.in_buffer = agent.Connection.read(self)
             if self.in_buffer == "":
                 log.debug("Read 0, disconnect")
                 self.disconnect()

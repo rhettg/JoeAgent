@@ -134,7 +134,13 @@ class DirectorStatusResponse(simple.StatusResponse):
     registered with the Director"""
     def __init__(self, key = None):
         simple.StatusResponse.__init__(self, key)
+        self.config = None
         self.agents = []
+
+    def setConfig(self, config):
+        self.config = config
+    def getConfig(self):
+        return self.config
 
     def addAgentInfo(self, agnt):
         assert isinstance(agnt, agent.AgentInfo)

@@ -62,17 +62,17 @@ if __name__ == "__main__":
     config.setName("Status Command")
 
     # Configuration for the remote agent
-    remote_config = agent.AgentConfig()
-    remote_config.setBindAddress(bind_addr)
-    remote_config.setPort(int(port))
-    remote_config.setName("Remote Agent")
+    remote_info = agent.AgentInfo()
+    remote_info.setHost(bind_addr)
+    remote_info.setPort(int(port))
+    remote_info.setName("Remote Agent")
 
     # Create the agent
     command_agent = agent.Agent(config)
 
     # Create the jobs
     status_job = StatusJob(command_agent)
-    connect_job = simple.ConnectJob(command_agent, remote_config)
+    connect_job = simple.ConnectJob(command_agent, remote_info)
 
     # Create an event that will start the job we want at run-time
     run_evt = RunJobEvent(command_agent, connect_job)
