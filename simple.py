@@ -31,7 +31,7 @@ class HandleConnectJob(job.Job):
         job.Job.notify(self, evt)
         if isinstance(evt, agent.MessageReceivedEvent) and \
            isinstance(evt.getMessage(), ConnectRequest):
-               evt.getSource().setConnectionInfo(evt.getMessage().getInfo())
+               evt.getSource().setAgentInfo(evt.getMessage().getInfo())
                
                out_msg = agent.OkResponse(evt.getMessage().getKey())
                assert out_msg.getRequestKey() != None, "Key is None"
@@ -81,6 +81,8 @@ class ConnectCompleteEvent(event.Event):
         self.connection = connection
     def getConnection(self):
         return self.connection
+
+class ConnectFailedEvent(event.Event): pass
 
 class ConnectRetryEvent(event.Event): pass
 
@@ -147,19 +149,21 @@ class ConnectJob(job.Job):
         if self._max_retries == -1 or self._max_retries >= self._retries:
             connection = agent.AgentConnection(self.info)
             connection.connect()
+            if connection.isConnected():
+                self.getAgent().addConnection(connection)
+                self._connection = connection
 
-            self.getAgent().addConnection(connection)
-            self._connection = connection
+                # Send Connect Request
+                msg = ConnectRequest(self.getAgent().getInfo())
+                self.key = msg.getKey()
+                evt = agent.MessageSendEvent(self, msg, connection)
+                self.getAgent().addEvent(evt)
 
-            # Send Connect Request
-            msg = ConnectRequest(self.getAgent().getInfo())
-            self.key = msg.getKey()
-            evt = agent.MessageSendEvent(self, msg, connection)
-            self.getAgent().addEvent(evt)
             self._set_retry_timer()
         else:
             # This job is complete
             self.getAgent().dropListener(self)
+            self.getAgent().addEvent(ConnectFailedEvent(self))
 
             
 class StatusRequest(message.Request): pass

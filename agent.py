@@ -172,6 +172,8 @@ class StateChangeEvent(Event):
     def getNewState(self):
         return self.new_state
 
+class ConnectException(Exception): pass
+
 class Connection:
     def __init__(self, sock = None):
         self.sock = sock
@@ -190,7 +192,8 @@ class Connection:
     def disconnect(self):
         log.debug("Disconnecting connection to %s" % self.getName())
 
-        self.sock.close()
+        if self.sock is not None:
+            self.sock.close()
         self.sock = None
 
     def connect(self):
@@ -228,14 +231,14 @@ class AgentConnection(Connection):
         self.parser._cont_handler.setDocumentLocator(
                                  xml.sax.expatreader.ExpatLocator(self.parser))
     
-    def getConnectionInfo(self):
+    def getAgentInfo(self):
         return self.conn_info
-    def setConnectionInfo(self, info):
+    def setAgentInfo(self, info):
         self.conn_info = info
     
     def getName(self):
-        if self.getConnectionInfo() is not None:
-            return self.getConnectionInfo().getName()
+        if self.getAgentInfo() is not None:
+            return self.getAgentInfo().getName()
         else:
             return "Unnamed"
 
@@ -244,7 +247,7 @@ class AgentConnection(Connection):
         we just require that the connection request was made. In the future
         we can require a shutdown to come from a proper x509 certificate or
         something."""
-        return self.getConnectionInfo() is not None
+        return self.getAgentInfo() is not None
 
     def isSelfConnected(self):
         """Is the open connection opened by us, or by the remote side"""
@@ -259,19 +262,19 @@ class AgentConnection(Connection):
         if self.isConnected():
             raise Exception("Connection already established")
 
-        if self.getConnectionInfo() is None or \
-           self.getConnectionInfo().getHost() is None:
-            raise Exception("Do not know who to connect to")
+        if self.getAgentInfo() is None or \
+           self.getAgentInfo().getHost() is None:
+            raise ConnectException("Do not know who to connect to")
 
         self.self_connect = True
 
         try:
             self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.sock.connect((self.getConnectionInfo().getHost(), 
-                               int(self.getConnectionInfo().getPort())))
+            self.sock.connect((self.getAgentInfo().getHost(), 
+                               int(self.getAgentInfo().getPort())))
         except socket.error, e:
             log.error("Error connecting to agent %s: %s" % \
-                      (str(self.getConnectionInfo().getName()), str(e)))
+                      (str(self.getAgentInfo().getName()), str(e)))
             self.sock = None
         
     def read(self):
@@ -310,7 +313,10 @@ class AgentConnection(Connection):
     def write(self, buffer = ""):
         log.debug("Connection Write")
         if not self.isConnected():
-            self.connect()
+            try:
+                self.connect()
+            except ConnectException, e:
+                log.debug("Failed to (re)connect to agent. Not writing")
             return
 
         sent = 0
@@ -467,6 +473,7 @@ class Agent(EventSource, EventListener):
             log.debug("Request: %s" % event.getMessage().getKey())
         if isinstance(event.getMessage(), Response):
             log.debug("Response: %s" % str(event.getMessage()))
+
         event.getTarget().write(str(event.getMessage()))
 
 
