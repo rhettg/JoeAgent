@@ -464,7 +464,7 @@ class Agent(EventSource, EventListener):
         if self.state != state:
             self.state = state
     def isRunning(self):
-        return self.state == RUNNING
+        return isinstance(self.state, RunningState)
 
     # Event Handlers
     def handleConnectionReadEvent(self, event):
@@ -504,9 +504,8 @@ class Agent(EventSource, EventListener):
         if isinstance(event.getMessage(), Response):
             log.debug("Response: %s" % str(event.getMessage()))
 
-        if isinstance(event.getTarget(), AgentInfo):
-            job = ConnectJob()
-        event.getTarget().write(str(event.getMessage()))
+        if isinstance(event.getTarget(), Connection):
+            event.getTarget().write(str(event.getMessage()))
 
 
     _handlers = {
@@ -534,8 +533,11 @@ class Agent(EventSource, EventListener):
         log.debug("Going to handle an event")
         event = self.event_queue.pop()
         if event != None:
-            log.debug("Handling event %s" % str(event))
-            self.notifyListeners(event)
+            try:
+                log.debug("Handling event %s" % str(event))
+                self.notifyListeners(event)
+            except Exception, e:
+                log.exception("Error handling event")
 
     def shutdown(self):
         log.debug('Shutting down agent')

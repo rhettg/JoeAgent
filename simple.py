@@ -115,7 +115,6 @@ class ConnectJob(job.Job):
         self._connect()
 
     def notify(self, evt):
-        log.debug("Connect Job Notified") 
         job.Job.notify(self, evt)
         if isinstance(evt, agent.MessageReceivedEvent):
             if isinstance(evt.getMessage(), agent.OkResponse) and \
@@ -128,10 +127,11 @@ class ConnectJob(job.Job):
                 self._timer = None
             elif isinstance(evt.getMessage(), agent.DeniedResponse) and \
                self.key == evt.getMessage().getRequestKey():
-                self.getAgent().shutdown()
+                log.warning("Connect to %s failed, request denied" 
+                            % self.info.getName())
 
         elif isinstance(evt, ConnectRetryEvent) and evt.getSource() == self:
-            log.info("Attempting to connect to director")
+            log.info("Attempting to reconnect to remote agent")
             self._retries += 1
             self._connect()
 
@@ -140,7 +140,6 @@ class ConnectJob(job.Job):
             self.getAgent().dropListener(self)
             if isinstance(self._send_msg, agent.MessageSendEvent):
                 self.getAgent().addEvent(agent.MessageSendEvent)
-            self.getAgent().addEvent
 
     def getConnection(self):
         return self._connection
@@ -250,6 +249,30 @@ class SimpleAgent(agent.Agent):
         resp = StatusResponse(key)
         resp.setState(self.getState())
         return resp
+    
+    def handleMessageSendEvent(self, event):
+        agent.Agent.handleMessageSendEvent(self, event)
+
+        # We are extending handleMessageSendEvent to handle the case where
+        # the target is defined by a AgentInfo object. If this is the case,
+        # we will need to find a proper connection object (or create one)
+        if isinstance(event.getTarget(), agent.AgentInfo):
+            conn = self.getConnectionByInfo(event.getTarget())
+            if conn is None:
+                log.debug(
+                  "Connection to %s does not yet exist, creating ConnectJob" 
+                   % event.getTarget().getName())
+
+                jb = ConnectJob(self, event.getTarget(), 1, event)
+                self.addListener(jb)
+                self.addEvent(job.RunJobEvent(self, jb))
+            else:
+                conn.write(str(event.getMessage()))
+
+    def getHandlers(self):
+        handlers = agent.Agent.getHandlers(self)
+        handlers[agent.MessageSendEvent] = SimpleAgent.handleMessageSendEvent
+        return handlers
 
 class SubAgentConfig(agent.AgentConfig):
     """SubAgents have the special need of connecting to a director agent.
