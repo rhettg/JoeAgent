@@ -71,6 +71,12 @@ class AgentInfo(XMLObject):
         return self.name
     def setName(self, name):
         self.name = name
+    
+    def __eq__(self, info):
+        return info != None and self.__class__ == info.__class__ and \
+               self.getName() == info.getName() and \
+               self.getHost() == info.getHost() and \
+               self.getPort() == info.getPort()
 
 class AgentConfig(XMLObject):
     """This is the basic configuration class for an agent. An agent config 
@@ -192,6 +198,9 @@ class Connection:
     def getSocket(self):
         return self.sock
     
+    def getName(self):
+        return "Unnamed"
+
     def fileno(self):
         return self.sock.fileno()
     
@@ -408,6 +417,12 @@ class Agent(EventSource, EventListener):
         for c in self.connections:
             if c.getName() == name:
                 return c
+        return None
+    def getConnectionByInfo(self, info):
+        for c in self.connections:
+            if isinstance(c, AgentConnection):
+                if c.getAgentInfo() == info:
+                    return c
         return None
     def addConnection(self, conn):
         self.connections.append(conn)

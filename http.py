@@ -208,6 +208,10 @@ class HTTPConnection(agent.Connection):
     def __init__(self, sock = None):
         agent.Connection.__init__(self, sock)
         self.raw_request = ""
+        self.out_buffer = ""
+
+    def getName(self):
+        return "HTTP Client"
 
     def read(self):
         log.debug("Connection read")
@@ -237,9 +241,24 @@ class HTTPConnection(agent.Connection):
             log.error("Connection was dropped")
             return
 
-        agent.Connection.write(self, buffer)
+        sent = 0
+        self.out_buffer += str(buffer)
+        try:
+            sent = agent.Connection.write(self, self.out_buffer)
+        except socket.error, e:
+            log.exception("Exception during send")
+            self.disconnect()
+
+        self.out_buffer = self.out_buffer[sent:]
+        log.debug("%d chars sent" % sent)
+
         if not self.isWritePending():
             self.disconnect()
+
+    def isReadPending(self):
+        return self.isConnected()
+    def isWritePending(self):
+        return self.isConnected() and len(self.out_buffer) > 0
 
 class HTTPConnectEvent(agent.ConnectEvent): pass
 
@@ -248,7 +267,7 @@ class HTTPServerConnection(agent.ServerConnection):
         log.debug("Accepting a new HTTP connection")
         new_sock, new_addr = self.sock.accept()
         log.debug("%s connected" % str(new_addr))
-        return HTTPConnectEvent(self, HTTPConnection(None, new_sock))
+        return HTTPConnectEvent(self, HTTPConnection(new_sock))
 
 if __name__ == "__main__":
     sample_headers = ["Connection: keep-alive\r\n",

@@ -244,7 +244,6 @@ class SimpleAgent(agent.Agent):
         by sub-classes for custom responses"""
         resp = StatusResponse(key)
         resp.setState(self.getState())
-        resp.setConfig(self.getConfig())
         return resp
 
 class SubAgentConfig(agent.AgentConfig):

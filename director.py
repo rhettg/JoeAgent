@@ -9,8 +9,8 @@ PING_TIMEOUT = 1.0
 
 class PingJob(job.Job):
     """Job to handling pinging all the connected nodes a specified interval"""
-    def __init__(self):
-        job.Job.__init__(self)
+    def __init__(self, agnt):
+        job.Job.__init__(self, agnt)
         self.outgoing = {}
     def notify(self, evt):
         job.Job.notify(self, evt)

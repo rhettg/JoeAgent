@@ -7,7 +7,7 @@ class Job(event.EventListener):
     A job will attempt to do some work. This may require sending a request
     and receiving an appropriate response"""
     def __init__(self, agent):
-        EventListener.__init__(self)
+        event.EventListener.__init__(self)
         self.agent = agent
     def notify(self, evt):
         # The RunJobEvent is a built in special event. If we receive one of
