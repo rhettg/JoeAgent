@@ -1,0 +1,201 @@
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Initialized non-server agent
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Event Added (3)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x4512792c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4519ae4c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent.simple:Running ConnectJob
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (1)
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x4519f1ac>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4519f44c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1159328812
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Initialized non-server agent
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Event Added (3)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x44b3192c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x44ba4e4c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent.simple:Running ConnectJob
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (1)
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x44ba91ac>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x44ba944c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1153078316
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Initialized non-server agent
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Event Added (3)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x462c792c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4633ae4c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent.simple:Running ConnectJob
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent:Connection Added (1)
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x4633f1ac>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4633f44c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1177809964
+DEBUG:agent:Connection Write
+ERROR:agent:Error connecting to agent Remote Agent: (111, 'Connection refused')
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Initialized non-server agent
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Event Added (3)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x475a892c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x4761be4c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent.simple:Running ConnectJob
+DEBUG:agent:Connection Added (1)
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x476201ac>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x4762046c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1197605932
+DEBUG:agent:Connection Write
+DEBUG:agent:212 chars sent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:1 W:0, X:1 for None sec)
+DEBUG:agent:<agent.Connection instance at 0x4762028c> requests a read
+DEBUG:agent:Handling Read Event
+DEBUG:agent:Connection read
+DEBUG:agent:Read 0, disconnect
+DEBUG:agent:Disconnecting connection to Remote Agent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Initialized non-server agent
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Event Added (3)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x43cb992c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x43d2ce4c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent.simple:Running ConnectJob
+DEBUG:agent:Connection Added (1)
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x43d311ac>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x43d3146c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1137906732
+DEBUG:agent:Connection Write
+DEBUG:agent:212 chars sent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:1 W:0, X:1 for None sec)
+DEBUG:agent:<agent.Connection instance at 0x43d3128c> requests a read
+DEBUG:agent:Handling Read Event
+DEBUG:agent:Connection read
+DEBUG:agent:Read 0, disconnect
+DEBUG:agent:Disconnecting connection to Remote Agent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
+DEBUG:agent:Event Added (1)
+DEBUG:agent:Initialized non-server agent
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Event Added (3)
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x46dab8cc>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:0 W:0, X:0 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <job.RunJobEvent instance at 0x46e1ee0c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent.simple:Running ConnectJob
+DEBUG:agent:Connection Added (1)
+DEBUG:agent:Event Added (2)
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.StateChangeEvent instance at 0x46e2316c>
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Going into select (R:1 W:0, X:1 for 0.0 sec)
+DEBUG:agent:Going to handle an event
+DEBUG:agent:Handling event <agent.MessageSendEvent instance at 0x46e2342c>
+DEBUG:agent:Sending a message of type simple.ConnectRequest
+DEBUG:agent:Request: 1189229548
+DEBUG:agent:Connection Write
+DEBUG:agent:212 chars sent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:1 W:0, X:1 for None sec)
+DEBUG:agent:<agent.Connection instance at 0x46e2324c> requests a read
+DEBUG:agent:Handling Read Event
+DEBUG:agent:Connection read
+DEBUG:agent:Read 0, disconnect
+DEBUG:agent:Disconnecting connection to Remote Agent
+DEBUG:agent.simple:Connect Job Notified
+DEBUG:agent:Event Queue is empty
+DEBUG:agent:Going into select (R:0 W:0, X:0 for None sec)
