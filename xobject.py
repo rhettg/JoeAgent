@@ -144,8 +144,9 @@ class StackElement(object):
 
     def getTag(cls):
         """Return the tag that this element is represented as. This
-        method is both a object and class method, meaning it can be called with
-        either StackElement.getTag() or elementInstance.getTag()"""
+        method is both a object and class method, meaning it can be 
+        called with either StackElement.getTag() or 
+        elementInstance.getTag()"""
         return cls.TAG
     getTag = classmethod(getTag)
 

@@ -1,23 +1,24 @@
 """
-This module should provide everything that is needed to include a HTTP server
-within an agent.
+This module should provide everything that is needed to include a HTTP
+server within an agent.
 
-The agent should add a HTTPServerConnection which will listen on the specified
-port for incoming HTTP clients.
+The agent should add a HTTPServerConnection which will listen on the
+specified port for incoming HTTP clients.
 
-When a client connects, a HTTPConnection is created just as a normal agent
-connection to us would generate a Connection.
+When a client connects, a HTTPConnection is created just as a normal
+agent connection to us would generate a Connection.
 
-Incoming traffic to that HTTPConnection will result in the creation of a 
-HTTPRequestEvent or a HTTPRequestErrorEvent.
+Incoming traffic to that HTTPConnection will result in the creation of
+a HTTPRequestEvent or a HTTPRequestErrorEvent.
 
-These events will pass back into the agent event queue and can be handled by
-an HTTPJob.
+These events will pass back into the agent event queue and can be
+handled by an HTTPJob.
 
-It is expected that any agent using HTTPConnection will provide a handler for:
+It is expected that any agent using HTTPConnection will provide a
+handler for:
     HTTPRequestEvent
-        Handle request and create an HTTPResponseEvent with request.source
-        as the target
+        Handle request and create an HTTPResponseEvent with
+        request.source as the target
     HTTPRequestErrorEvent
         Handle error by creating a appropriate error response
     HTTPResponseEvent
@@ -56,8 +57,8 @@ class Header:
         return "%s\r\n" % (`self`)
 
 class HTTPRequest:
-    """Represents a request from an HTTP client. Notice that it is not related
-    to our own XMLObject based requests"""
+    """Represents a request from an HTTP client. Notice that it is not
+    related to our own XMLObject based requests"""
     REQ_REG = re.compile("([\S]+) ([\S]+)[\s]?([\S]+)?\r")
     def __init__(self, command = "", path = "", version = "", headers = []):
         self.command = command
@@ -201,10 +202,10 @@ class HTTPRequestErrorEvent(event.Event):
         return self.request
 
 class HTTPConnection(agent.Connection):
-    """This connection provides facilities for connecting to a HTTP client.
-    This is based on BaseHTTPRequestHandler class of the python standard
-    library. It was not possible to use that library directly because it 
-    blocks.  """
+    """This connection provides facilities for connecting to a HTTP
+    client.  This is based on BaseHTTPRequestHandler class of the
+    python standard library. It was not possible to use that library
+    directly because it blocks.  """
     def __init__(self, sock = None):
         agent.Connection.__init__(self, sock)
         self.raw_request = ""

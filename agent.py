@@ -350,8 +350,8 @@ class AgentConnection(Connection):
     def isReadPending(self):
         """If the socket is open, we will always say we are ready for read.
         This assumes the caller is only inspecting this socket when there
-        is data ready. We do not want to check for data here because we do not
-        want to block."""
+        is data ready. We do not want to check for data here because we do 
+        not want to block."""
         return self.isConnected()
 
     def isWritePending(self):

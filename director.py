@@ -73,9 +73,10 @@ class ShutdownJob(job.Job):
 
     The job will send shutdown requests to all registered agents.
 
-    When the job is complete, the director agent status will be set to STOPPING.
-    This only happens once all the agents have responded to the request or 
-    failed to respond to a Ping (indicating the agent is already unavailable).
+    When the job is complete, the director agent status will be set to
+    STOPPING.  This only happens once all the agents have responded to the
+    request or failed to respond to a Ping (indicating the agent is already
+    unavailable).
     """
     def __init__(self, agnt):
         job.Job.__init__(self, agnt)
@@ -135,7 +136,7 @@ class ShutdownJob(job.Job):
 
 class DirectorStatusResponse(simple.StatusResponse):
     """The response to a status request will contain in addition to basic
-    status information the list of all the AgentInfo objects which were 
+    status information the list of all the AgentInfo objects which were
     registered with the Director"""
     def __init__(self, key = None):
         simple.StatusResponse.__init__(self, key)
@@ -162,24 +163,25 @@ class DirectorConfig(simple.SimpleAgentConfig):
         return Director
 
 class Director(simple.SimpleAgent):
-    """The director is a simple agent which sole purpose is to provide a small
-    amount of central control for the application. All sub-agents will register
-    themsevles with the director.
+    """The director is a simple agent which sole purpose is to provide
+    a small amount of central control for the application. All
+    sub-agents will register themsevles with the director.
 
-    Anytime another agent wishes to know what other agents exist, the director
-    is the source for that information.
+    Anytime another agent wishes to know what other agents exist, the
+    director is the source for that information.
 
-    For example, an agent which is responsible for checking the status of all
-    the agents will need an up to date list of what agents are available and
-    then will directly poll each agent to find out their respective statuses.
+    For example, an agent which is responsible for checking the status
+    of all the agents will need an up to date list of what agents are
+    available and then will directly poll each agent to find out their
+    respective statuses.
 
-    The director will also do a heartbeat (Ping) to each registered agent to
-    ensure they are still up and running.
+    The director will also do a heartbeat (Ping) to each registered
+    agent to ensure they are still up and running.
 
-    Shutting down the director is also special. If the director is shutdown,
-    all the agents registered will also receive shutdown requests. When
-    a shutdown is requested of the director, effectivly the request is
-    broadcasted to all agents.
+    Shutting down the director is also special. If the director is
+    shutdown, all the agents registered will also receive shutdown
+    requests. When a shutdown is requested of the director, effectivly
+    the request is broadcasted to all agents.
     """
     def getInitJobs(self):
         return simple.SimpleAgent.getInitJobs(self) + \

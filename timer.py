@@ -47,8 +47,8 @@ class Timer:
 class TimerCollection:
     """A timer collection is held by and agent. Each agent has just one.
 
-    The TimerCollection provides storage for timers and methods for checking
-    if a timer as expired or when the next timeout is."""
+    The TimerCollection provides storage for timers and methods for
+    checking if a timer as expired or when the next timeout is."""
     def __init__(self):
         self.timers = []
 
@@ -58,7 +58,8 @@ class TimerCollection:
         self.timers.append(timer)
 
     def nextTimeoutValue(self):
-        """Return how many seconds (float) before the next timer will expire"""
+        """Return how many seconds (float) before the next timer will
+        expire"""
         min = None
         for t in self.timers:
             if min is None or t.getTimeLeft() < min:
@@ -72,9 +73,9 @@ class TimerCollection:
         timer.stop()
 
     def checkTimers(self):
-        """Check timers to see if anyone has expired.
-        Also takes care of cleaning up previously timers we should keep around
-        any longer (expired or stopped) """
+        """Check timers to see if anyone has expired.  Also takes care
+        of cleaning up previously timers we should keep around any
+        longer (expired or stopped) """
         popped = []
         for t in self.timers:
             if t.isPopped():
