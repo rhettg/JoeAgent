@@ -86,7 +86,8 @@ class ShutdownJob(job.Job):
         # and recognize who the reply is from.
         for conn in agnt.getConnections():
             if isinstance(conn, agent.AgentConnection) and \
-               conn.getAgentInfo() is not None:
+               conn.getAgentInfo() is not None and \
+               conn.getAgentInfo().getName() != "Shutdown Command":
                 self.agnt_conns[conn] = None
 
     def run(self):
@@ -183,12 +184,12 @@ class Director(simple.SimpleAgent):
     requests. When a shutdown is requested of the director, effectivly
     the request is broadcasted to all agents.
     """
-    def getInitJobs(self):
-        return simple.SimpleAgent.getInitJobs(self) + \
-           [PingJob(self)]
-    def getInitTimers(self):
-        return simple.SimpleAgent.getInitTimers(self) + \
-           [PingTimer(self)]
+    #def getInitJobs(self):
+        #return simple.SimpleAgent.getInitJobs(self) + \
+           #[PingJob(self)]
+    #def getInitTimers(self):
+        #return simple.SimpleAgent.getInitTimers(self) + \
+           #[PingTimer(self)]
 
     def getStatusResponse(self, key):
         resp = DirectorStatusResponse(key)
